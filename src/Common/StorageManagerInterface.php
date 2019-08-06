@@ -17,13 +17,6 @@ interface StorageManagerInterface
     public function getSchemaStorage(): StorageInterface;
 
     /**
-     * Retrieves the alias storage.
-     *
-     * @return StorageInterface
-     */
-    public function getAliasStorage(): StorageInterface;
-
-    /**
      * Retrieves the validator storage.
      *
      * @return StorageInterface

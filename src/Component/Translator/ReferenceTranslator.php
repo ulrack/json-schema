@@ -11,8 +11,8 @@ use Ulrack\JsonSchema\Common\ReferenceTranslatorInterface;
 
 class ReferenceTranslator implements ReferenceTranslatorInterface
 {
-    const URL_REGEX = '/^(https?:\\/\\/){1}(((?!-)[0-9a-z\-]+[0-9a-z]+(?!-))('.
-    '\\.(?!-)[0-9a-z\-]+[0-9a-z]+(?!-))*(:\\d+)?)/';
+    const URL_REGEX = '/^(https?:\\/\\/){1}(((?!-)[0-9a-z-]+[0-9a-z]+(?!-))(' .
+    '\\.(?!-)[0-9a-z-]+[0-9a-z]+(?!-))*(:\\d+)?)([\\w\\/\\-]*#?)/';
 
     /**
      * Translates the reference.
@@ -35,12 +35,16 @@ class ReferenceTranslator implements ReferenceTranslatorInterface
         }
 
         if (preg_match(static::URL_REGEX, $schemaId, $matches) === 1) {
+            if (strpos($matches[6], '#') === false) {
+                return sprintf('%s%s/%s', $matches[1], $matches[2], ltrim($reference, '/'));
+            }
+
             return sprintf('%s/%s', $matches[0], ltrim($reference, '/'));
         }
 
         throw new SchemaException(
             sprintf(
-                'Could not resolve %s in %s.',
+                'Could not translate %s in %s.',
                 $reference,
                 $schemaId
             )

@@ -15,13 +15,13 @@ class DraftTest extends TestCase
     /**
      * @param SupportedDraftsEnum $draft
      * @param object $schema
-     * 
+     *
      * @return void
-     * 
+     *
      * @dataProvider dataProvider
      */
     public function testDraft(
-        SupportedDraftsEnum $draft, 
+        SupportedDraftsEnum $draft,
         object $schema
     ): void {
         $factory = new SchemaValidatorFactory($draft);
@@ -39,6 +39,12 @@ class DraftTest extends TestCase
                 SupportedDraftsEnum::DRAFT_07(),
                 json_decode(
                     file_get_contents('http://json-schema.org/draft-07/schema#')
+                ),
+            ],
+            [
+                SupportedDraftsEnum::DRAFT_06(),
+                json_decode(
+                    file_get_contents('http://json-schema.org/draft-06/schema#')
                 ),
             ]
         ];

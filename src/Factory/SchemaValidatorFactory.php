@@ -6,6 +6,7 @@
 
 namespace Ulrack\JsonSchema\Factory;
 
+use InvalidArgumentException;
 use Ulrack\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Common\SupportedDraftsEnum;
@@ -38,8 +39,8 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
         StorageManagerInterface $storageManager = null,
         ValidatorFactoryInterface $validatorFactory = null
     ) {
-        $map = !is_null($map) 
-            ? (string) $map 
+        $map = !is_null($map)
+            ? (string) $map
             : (string) SupportedDraftsEnum::DEFAULT();
 
         $this->map = new $map();
@@ -68,6 +69,9 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      * @param object $schema
      *
      * @return ValidatorInterface
+     *
+     * @throws SchemaException When the $schema property isn't set.
+     * @throws SchemaException When the schema itself is invalid.
      */
     public function createVerifiedValidator(object $schema): ValidatorInterface
     {
@@ -91,6 +95,8 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      * @param string $path
      *
      * @return ValidatorInterface
+     *
+     * @throws InvalidArgumentException When the file can not be found.
      */
     public function createFromLocalFile(string $path): ValidatorInterface
     {
@@ -98,6 +104,13 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
         if (file_exists($path)) {
             return $this->createFromRemoteFile($path);
         }
+
+        throw new InvalidArgumentException(
+            sprintf(
+                'Could not find file %s.',
+                $path
+            )
+        );
     }
 
     /**
@@ -106,43 +119,36 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      * @param string $path
      *
      * @return ValidatorInterface
+     *
+     * @throws InvalidArgumentException When the file can not be retrieved.
      */
     public function createFromRemoteFile(string $path): ValidatorInterface
     {
         $schemaStorage = $this->storageManager->getSchemaStorage();
         $validatorStorage = $this->storageManager->getValidatorStorage();
+        if ($validatorStorage->has($path)) {
+            return $validatorStorage->get($path);
+        }
+
         if ($schemaStorage->has($path)) {
-            if ($validatorStorage->has($path)) {
-                return $validatorStorage->get($path);
-            }
+            $schema = $schemaStorage->get($path);
 
-            return $this->create($schemaStorage->get($path));
+            $validatorStorage->set(
+                $path,
+                $this->create($schema)
+            );
+
+            return $validatorStorage->get($path);
         }
 
-        $aliasStorage = $this->storageManager->getAliasStorage();
-        if ($aliasStorage->has($path)) {
-            $alias = $aliasStorage->get($path);
-            if ($schemaStorage->has($alias)) {
-                if ($validatorStorage->has($alias)) {
-                    return $validatorStorage->get($alias);
-                }
-
-                return $this->create(
-                    $schemaStorage->get($alias)
-                );
-            }
-        }
-
-        $file = file_get_contents($path);
-        if ($file !== false) {
-            return $this->createFromString($file, $path);
-        }
+        return $this->createFromString(file_get_contents($path), $path);
     }
 
     /**
      * Creates a validator from a string.
      *
-     * @param string $json
+     * @param string      $json
+     * @param string|null $id
      *
      * @return ValidatorInterface
      *
@@ -162,11 +168,9 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
             );
         }
 
-        if (property_exists($schema, '$id') && $id !== null) {
-            $this->storageManager
-                ->getAliasStorage()
-                ->set($id, $schema->{'$id'});
-        } elseif (!property_exists($schema, '$id') && $id !== null) {
+        if (is_object($schema)
+        && !property_exists($schema, '$id')
+        && $id !== null) {
             $schema->{'$id'} = $id;
         }
 

@@ -2,6 +2,14 @@
 
 # Ulrack JSON Schema
 
+This package contains a [JSON schema](https://json-schema.org/) validator 
+library for PHP. It support Draft 07 and 06.
+
+To get a grip on JSON schema's, what they are and how they work, please see the
+manual of [json-schema-org](https://json-schema.org/learn/).
+
+The package generates a reusable validation object, which can be used to verify
+data against.
 
 ## Installation
 
@@ -13,7 +21,120 @@ composer require ulrack/json-schema
 
 ## Usage
 
+Before a validation object can be created, the factory for the validators needs
+to be instantiated. This can be done by using the following snippet:
+```php
+<?php
 
+use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
+
+$factory = new SchemaValidatorFactory();
+```
+
+All of the below described method of generating a validation object will result
+in a [ValidatorInterface](https://github.com/ulrack/validator/blob/master/src/Common/ValidatorInterface.php).
+To verify data against this object, simply pass the data to the `__invoke` 
+method, like so:
+```php
+<?php
+
+use Ulrack\Validator\Common\ValidatorInterface;
+
+/** @var ValidatorInterface $validator */
+$validator($myData); // returns true or false.
+```
+
+After the factory is created there are 4 options to create the validation object.
+
+### Object injection
+
+If an object is already created by a (for example) a previous call to 
+`json_decode` (second parameter must be either null or false, to get an object).
+
+The validation object can be created by calling the `create` method on the 
+previously instantiated `SchemaValidatorFactory`.
+
+```php
+<?php
+
+use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
+
+/** @var object|bool $schema */
+/** @var SchemaValidatorFactory $factory */
+$factory->create($schema);
+```
+
+It is also possible to create a verified validation object.
+This is possible when the `$schema` property is set on the 
+provided schema. The schema will then be validated against
+the schema which is defined on the property. This can be 
+done with the following snippet:
+
+```php
+<?php
+
+use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
+
+/** @var object|bool $schema */
+/** @var SchemaValidatorFactory $factory */
+$factory->createVerifiedValidator($schema);
+```
+
+### Local file
+
+To create a validator object from a local schema file, it is also possible to
+reference this file location to a method and let this method load it. This
+can be done with the following snippet:
+```php
+<?php
+
+use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
+
+/** @var SchemaValidatorFactory $factory */
+$factory->createFromLocalFile('path/to/my/schema.json');
+```
+
+### Remote file
+
+A schema can also be loaded from a remote location, for example: 
+[http://json-schema.org/draft-07/schema#](http://json-schema.org/draft-07/schema#).
+To load a schema from a remote location, use the following method:
+```php
+<?php
+
+use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
+
+/** @var SchemaValidatorFactory $factory */
+$factory->createFromRemoteFile('http://json-schema.org/draft-07/schema#');
+```
+
+### From string
+
+If a validation object needs to be created from a JSON string, use the method
+`createFromString`.
+
+```php
+<?php
+
+use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
+
+/** @var SchemaValidatorFactory $factory */
+$factory->createFromString(
+    '{"$ref": "http://json-schema.org/draft-07/schema#"}'
+);
+```
+
+## Note
+
+Local file reference (using `$ref`) resolving has not been tested in this 
+package. It is not guaranteed to work out of the box.  Please revert to using 
+ID's in the schemas (also a best practice) and reference these through a 
+hosting option. If hosting is not an option. The 
+[StorageManager](src/Component/Storage/StorageManager.php) can easily be 
+pre-loaded with a list of schema's through providing an implementation of the 
+[StorageInterface](https://github.com/ulrack/storage/blob/master/src/Common/StorageInterface.php).
+This prepared StorageManager can then be provided to the 
+`SchemaValidatorFactory`'s second argument during instantiation.
 
 ## Change log
 

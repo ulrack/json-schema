@@ -38,6 +38,8 @@ class ReferenceResolver implements ReferenceResolverInterface
      * @param ReferenceValidator $reference
      *
      * @return ReferenceResolutionInterface|null
+     *
+     * @throws SchemaException When the reference can not be resolved.
      */
     public function resolve(
         ReferenceValidator $reference
@@ -74,10 +76,12 @@ class ReferenceResolver implements ReferenceResolverInterface
                         urldecode($inRef)
                     );
 
-                    if (is_numeric($inRef)) {
+                    if (is_numeric($inRef)
+                    && array_key_exists($inRef, $schema)) {
                         $schema = $schema[$inRef];
                         continue;
-                    } elseif (property_exists($schema, $inRef)) {
+                    } elseif (is_object($schema)
+                    && property_exists($schema, $inRef)) {
                         $schema = $schema->{$inRef};
                         continue;
                     }

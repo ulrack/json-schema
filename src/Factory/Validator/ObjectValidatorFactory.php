@@ -20,14 +20,14 @@ class ObjectValidatorFactory extends AbstractValidatorFactory
     /**
      * Composes the object validator.
      *
-     * @param array|null $properties
-     * @param array|null $patternProperties
-     * @param mixed      $propertyNames
-     * @param mixed      $additionalProperties
-     * @param array|null $dependencies
-     * @param array|null $required
-     * @param int|null   $minProperties
-     * @param int|null   $maxProperties
+     * @param object|null $properties
+     * @param object|null $patternProperties
+     * @param mixed       $propertyNames
+     * @param mixed       $additionalProperties
+     * @param object|null $dependencies
+     * @param array|null  $required
+     * @param int|null    $minProperties
+     * @param int|null    $maxProperties
      *
      * @return ValidatorInterface
      */

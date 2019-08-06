@@ -20,13 +20,6 @@ class StorageManager implements StorageManagerInterface
     private $schemaStorage;
 
     /**
-     * Contains the alias storage.
-     *
-     * @var StorageInterface
-     */
-    private $aliasStorage;
-
-    /**
      * Contains the validator storage.
      *
      * @var StorageInterface
@@ -44,18 +37,15 @@ class StorageManager implements StorageManagerInterface
      * Constructor
      *
      * @param StorageInterface $schemaStorage
-     * @param StorageInterface $aliasStorage
      * @param StorageInterface $validatorStorage
      * @param StorageInterface $referenceStorage
      */
     public function __construct(
         StorageInterface $schemaStorage = null,
-        StorageInterface $aliasStorage = null,
         StorageInterface $validatorStorage = null,
         StorageInterface $referenceStorage = null
     ) {
         $this->schemaStorage = $schemaStorage ?? new ObjectStorage();
-        $this->aliasStorage = $aliasStorage ?? new ObjectStorage();
         $this->validatorStorage = $validatorStorage ?? new ObjectStorage();
         $this->referenceStorage = $referenceStorage ?? new ObjectStorage();
     }
@@ -68,16 +58,6 @@ class StorageManager implements StorageManagerInterface
     public function getSchemaStorage(): StorageInterface
     {
         return $this->schemaStorage;
-    }
-
-    /**
-     * Retrieves the alias storage.
-     *
-     * @return StorageInterface
-     */
-    public function getAliasStorage(): StorageInterface
-    {
-        return $this->aliasStorage;
     }
 
     /**
