@@ -13,6 +13,7 @@ use Ulrack\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
 use Ulrack\JsonSchema\Component\Storage\StorageManager;
+use Ulrack\JsonSchema\Component\Validator\ReferenceValidator;
 
 /**
  * @coversDefaultClass Ulrack\JsonSchema\Factory\SchemaValidatorFactory
@@ -68,6 +69,35 @@ class SchemaValidatorFactoryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $subject->createFromLocalFile(__DIR__ . '/../assets/nope.json');
+    }
+
+    /**
+     * @return void
+     *
+     * @covers ::createFromLocalFile
+     * @covers ::createFromRemoteFile
+     * @covers ::create
+     */
+    public function testCreateWithLocalReference(): void
+    {
+        $subject = new SchemaValidatorFactory();
+        /** @var ReferenceValidator $referenceValidator */
+        $referenceValidator = $subject->createFromLocalFile(
+            __DIR__ . '/../assets/local-reference.json'
+        );
+
+        $equalizedValidator = new ReferenceValidator(
+            $referenceValidator->getReference()
+        );
+
+        $equalizedValidator->setValidator(
+            $subject->createFromLocalFile(__DIR__ . '/../assets/schema.json')
+        );
+
+        $this->assertEquals(
+            $referenceValidator,
+            $equalizedValidator
+        );
     }
 
     /**

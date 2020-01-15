@@ -124,18 +124,6 @@ $factory->createFromString(
 );
 ```
 
-## Note
-
-Local file reference (using `$ref`) resolving has not been tested in this 
-package. It is not guaranteed to work out of the box.  Please revert to using 
-ID's in the schemas (also a best practice) and reference these through a 
-hosting option. If hosting is not an option. The 
-[StorageManager](src/Component/Storage/StorageManager.php) can easily be 
-pre-loaded with a list of schema's through providing an implementation of the 
-[StorageInterface](https://github.com/ulrack/storage/blob/master/src/Common/StorageInterface.php).
-This prepared StorageManager can then be provided to the 
-`SchemaValidatorFactory`'s second argument during instantiation.
-
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

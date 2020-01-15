@@ -75,6 +75,7 @@ class ValidatorFactory implements ValidatorFactoryInterface
      * @param object|bool $schema
      * @param bool        $isBase
      * @param string|null $overrideId
+     * @param string      $schemaPath
      *
      * @return ValidatorInterface
      *
@@ -83,7 +84,8 @@ class ValidatorFactory implements ValidatorFactoryInterface
     public function create(
         $schema,
         bool $isBase = true,
-        string $overrideId = null
+        string $overrideId = null,
+        string $schemaPath = ''
     ): ValidatorInterface {
         if (!is_object($schema) && !is_bool($schema)) {
             throw new SchemaException(
@@ -114,7 +116,8 @@ class ValidatorFactory implements ValidatorFactoryInterface
         if (property_exists($schema, '$ref')) {
             $reference = $this->referenceTranslator->translate(
                 $this->id,
-                $schema->{'$ref'}
+                $schema->{'$ref'},
+                $schemaPath
             );
 
             $this->newReferences = true;

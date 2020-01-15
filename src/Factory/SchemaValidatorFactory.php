@@ -55,26 +55,35 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      * Composes the schema validator.
      *
      * @param object|bool $schema
+     * @param string $schemaPath
      *
      * @return ValidatorInterface
      */
-    public function create($schema): ValidatorInterface
+    public function create($schema, string $schemaPath = ''): ValidatorInterface
     {
-        return $this->validatorFactory->create($schema);
+        return $this->validatorFactory->create(
+            $schema,
+            true,
+            null,
+            $schemaPath
+        );
     }
 
     /**
      * Creates a validator which is first verified against the defined $schema.
      *
      * @param object $schema
+     * @param string $schemaPath
      *
      * @return ValidatorInterface
      *
      * @throws SchemaException When the $schema property isn't set.
      * @throws SchemaException When the schema itself is invalid.
      */
-    public function createVerifiedValidator(object $schema): ValidatorInterface
-    {
+    public function createVerifiedValidator(
+        object $schema,
+        string $schemaPath = ''
+    ): ValidatorInterface {
         if (!property_exists($schema, '$schema')) {
             throw new SchemaException(
                 'The $schema property must be set for verified validators.'
@@ -83,7 +92,7 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
 
         $validator = $this->createFromRemoteFile($schema->{'$schema'});
         if ($validator($schema)) {
-            return $this->create($schema);
+            return $this->create($schema, $schemaPath);
         }
 
         throw new SchemaException('The schema was invalid!');
@@ -100,6 +109,7 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      */
     public function createFromLocalFile(string $path): ValidatorInterface
     {
+        $oldPath = $path;
         $path = realpath($path);
         if (file_exists($path)) {
             return $this->createFromRemoteFile($path);
@@ -135,13 +145,13 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
 
             $validatorStorage->set(
                 $path,
-                $this->create($schema)
+                $this->create($schema, $path)
             );
 
             return $validatorStorage->get($path);
         }
 
-        return $this->createFromString(file_get_contents($path), $path);
+        return $this->createFromString(file_get_contents($path), null, $path);
     }
 
     /**
@@ -149,6 +159,7 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      *
      * @param string      $json
      * @param string|null $id
+     * @param string      $schemaPath
      *
      * @return ValidatorInterface
      *
@@ -156,7 +167,8 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
      */
     public function createFromString(
         string $json,
-        string $id = null
+        string $id = null,
+        string $schemaPath = ''
     ): ValidatorInterface {
         $schema = json_decode($json);
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -174,11 +186,15 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
             $schema->{'$id'} = $id;
         }
 
+        if (property_exists($schema, '$id') || empty($schema->{'$id'})) {
+            $schema->{'$id'} = $schemaPath;
+        }
+
         $this->storageManager
             ->getSchemaStorage()
             ->set($schema->{'$id'}, $schema);
 
-        $validator = $this->create($schema);
+        $validator = $this->create($schema, $schemaPath);
 
         $this->storageManager
             ->getValidatorStorage()

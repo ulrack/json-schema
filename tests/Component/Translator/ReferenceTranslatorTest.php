@@ -30,13 +30,14 @@ class ReferenceTranslatorTest extends TestCase
     public function testTranslate(
         string $schemaId,
         string $reference,
-        string $expected
+        string $expected,
+        string $schemaPath
     ): void {
         $subject = new ReferenceTranslator();
 
         $this->assertEquals(
             $expected,
-            $subject->translate($schemaId, $reference)
+            $subject->translate($schemaId, $reference, $schemaPath)
         );
     }
 
@@ -49,7 +50,7 @@ class ReferenceTranslatorTest extends TestCase
     {
         $subject = new ReferenceTranslator();
         $this->expectException(SchemaException::class);
-        $subject->translate('/test/', '/foo/');
+        $subject->translate('/test/', 'foo/');
     }
 
     /**
@@ -61,22 +62,38 @@ class ReferenceTranslatorTest extends TestCase
             [
                 'http://json-schema.org/draft-07/schema#',
                 '#/definitions/schemaArray',
-                'http://json-schema.org/draft-07/schema#/definitions/schemaArray'
+                'http://json-schema.org/draft-07/schema#/definitions/schemaArray',
+                ''
             ],
             [
                 '#',
                 'http://json-schema.org/draft-07/schema#',
-                'http://json-schema.org/draft-07/schema#'
+                'http://json-schema.org/draft-07/schema#',
+                ''
             ],
             [
                 'http://json-schema.org/draft-07/schema#/definitions/nonNegativeInteger',
                 '/defintions/schemaArray',
-                'http://json-schema.org/draft-07/schema#/defintions/schemaArray'
+                'http://json-schema.org/draft-07/schema#/defintions/schemaArray',
+                ''
             ],
             [
                 'http://json-schema.org/draft-07/schema/definitions/nonNegativeInteger',
                 '/definitions/schemaArray',
-                'http://json-schema.org/definitions/schemaArray'
+                'http://json-schema.org/definitions/schemaArray',
+                ''
+            ],
+            [
+                'schema.json',
+                'Draft7.json',
+                realpath(__DIR__ . '/../../assets/Draft7.json'),
+                __DIR__ . '/../../assets/schema.json'
+            ],
+            [
+                'schema.json',
+                realpath(__DIR__ . '/../../assets/Draft7.json'),
+                realpath(__DIR__ . '/../../assets/Draft7.json'),
+                ''
             ],
         ];
     }

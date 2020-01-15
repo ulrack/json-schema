@@ -19,13 +19,17 @@ class ReferenceTranslator implements ReferenceTranslatorInterface
      *
      * @param string $schemaId
      * @param string $reference
+     * @param string $schemaPath
      *
      * @return string
      *
      * @throws SchemaException When the reference can not be determined.
      */
-    public function translate(string $schemaId, string $reference): string
-    {
+    public function translate(
+        string $schemaId,
+        string $reference,
+        string $schemaPath = ''
+    ): string {
         if (substr($reference, 0, 1) === '#') {
             return rtrim($schemaId, '#') . $reference;
         }
@@ -40,6 +44,14 @@ class ReferenceTranslator implements ReferenceTranslatorInterface
             }
 
             return sprintf('%s/%s', $matches[0], ltrim($reference, '/'));
+        }
+
+        if (substr($reference, 0, 1) === '/') {
+            return $reference;
+        }
+
+        if (!empty($schemaPath)) {
+            return realpath(sprintf('%s/%s', dirname($schemaPath), $reference));
         }
 
         throw new SchemaException(
