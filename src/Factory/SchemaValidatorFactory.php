@@ -142,7 +142,6 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
 
         if ($schemaStorage->has($path)) {
             $schema = $schemaStorage->get($path);
-
             $validatorStorage->set(
                 $path,
                 $this->create($schema, $path)
@@ -186,7 +185,7 @@ class SchemaValidatorFactory implements SchemaValidatorFactoryInterface
             $schema->{'$id'} = $id;
         }
 
-        if (property_exists($schema, '$id') || empty($schema->{'$id'})) {
+        if (!property_exists($schema, '$id') || empty($schema->{'$id'})) {
             $schema->{'$id'} = $schemaPath;
         }
 

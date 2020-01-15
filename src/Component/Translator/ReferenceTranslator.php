@@ -51,7 +51,23 @@ class ReferenceTranslator implements ReferenceTranslatorInterface
         }
 
         if (!empty($schemaPath)) {
-            return realpath(sprintf('%s/%s', dirname($schemaPath), $reference));
+            $expReference = explode('#', $reference, 2);
+
+            return implode(
+                '#',
+                array_merge(
+                    [
+                        realpath(
+                            sprintf(
+                                '%s/%s',
+                                dirname($schemaPath),
+                                array_shift($expReference)
+                            )
+                        )
+                    ],
+                    $expReference
+                )
+            );
         }
 
         throw new SchemaException(

@@ -35,6 +35,13 @@ class ValidatorFactory implements ValidatorFactoryInterface
      */
     private $newReferences = false;
 
+    /**
+     * Contains the last known path for the resolver.
+     *
+     * @var string
+     */
+    private $lastKnownPath = '';
+
     /** @var ReferenceTranslatorInterface */
     private $referenceTranslator;
 
@@ -87,6 +94,11 @@ class ValidatorFactory implements ValidatorFactoryInterface
         string $overrideId = null,
         string $schemaPath = ''
     ): ValidatorInterface {
+        $lastKnownPath = empty($schemaPath) ? $this->lastKnownPath : $schemaPath;
+        if ($schemaPath !== '') {
+            $this->lastKnownPath = $schemaPath;
+        }
+
         if (!is_object($schema) && !is_bool($schema)) {
             throw new SchemaException(
                 'Could not parse schema, must be an object or boolean.'
@@ -117,7 +129,7 @@ class ValidatorFactory implements ValidatorFactoryInterface
             $reference = $this->referenceTranslator->translate(
                 $this->id,
                 $schema->{'$ref'},
-                $schemaPath
+                $this->lastKnownPath
             );
 
             $this->newReferences = true;
@@ -142,6 +154,10 @@ class ValidatorFactory implements ValidatorFactoryInterface
 
         if ($isBase) {
             $this->resolveReferences();
+        }
+
+        if ($schemaPath !== '') {
+            $this->lastKnownPath = $lastKnownPath;
         }
 
         return new AndValidator(...$validators);
