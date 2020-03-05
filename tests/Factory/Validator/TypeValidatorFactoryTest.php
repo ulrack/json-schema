@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) Jyxon, Inc. All rights reserved.
+ * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
  */
 
@@ -37,7 +37,7 @@ class TypeValidatorFactoryTest extends TestCase
         );
 
         $this->expectException(InvalidArgumentException::class);
-        
+
         $subject->create('foo');
     }
 }

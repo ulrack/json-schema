@@ -2,7 +2,7 @@
 
 # Ulrack JSON Schema
 
-This package contains a [JSON schema](https://json-schema.org/) validator 
+This package contains a [JSON schema](https://json-schema.org/) validator
 library for PHP. It support Draft 07 and 06.
 
 To get a grip on JSON schema's, what they are and how they work, please see the
@@ -33,7 +33,7 @@ $factory = new SchemaValidatorFactory();
 
 All of the below described method of generating a validation object will result
 in a [ValidatorInterface](https://github.com/ulrack/validator/blob/master/src/Common/ValidatorInterface.php).
-To verify data against this object, simply pass the data to the `__invoke` 
+To verify data against this object, simply pass the data to the `__invoke`
 method, like so:
 ```php
 <?php
@@ -48,10 +48,10 @@ After the factory is created there are 4 options to create the validation object
 
 ### Object injection
 
-If an object is already created by a (for example) a previous call to 
+If an object is already created by a (for example) a previous call to
 `json_decode` (second parameter must be either null or false, to get an object).
 
-The validation object can be created by calling the `create` method on the 
+The validation object can be created by calling the `create` method on the
 previously instantiated `SchemaValidatorFactory`.
 
 ```php
@@ -65,9 +65,9 @@ $factory->create($schema);
 ```
 
 It is also possible to create a verified validation object.
-This is possible when the `$schema` property is set on the 
+This is possible when the `$schema` property is set on the
 provided schema. The schema will then be validated against
-the schema which is defined on the property. This can be 
+the schema which is defined on the property. This can be
 done with the following snippet:
 
 ```php
@@ -96,7 +96,7 @@ $factory->createFromLocalFile('path/to/my/schema.json');
 
 ### Remote file
 
-A schema can also be loaded from a remote location, for example: 
+A schema can also be loaded from a remote location, for example:
 [http://json-schema.org/draft-07/schema#](http://json-schema.org/draft-07/schema#).
 To load a schema from a remote location, use the following method:
 ```php
@@ -134,7 +134,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## MIT License
 
-Copyright (c) 2019 Jyxon
+Copyright (c) 2019 GrizzIT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

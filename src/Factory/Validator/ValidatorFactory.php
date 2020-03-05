@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) Jyxon, Inc. All rights reserved.
+ * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
  */
 
@@ -133,7 +133,7 @@ class ValidatorFactory implements ValidatorFactoryInterface
             );
 
             $this->newReferences = true;
-            
+
             $referenceStorage = $this->storageManager->getReferenceStorage();
             if ($referenceStorage->has($reference)) {
                 return $referenceStorage->get($reference);

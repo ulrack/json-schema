@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) Jyxon, Inc. All rights reserved.
+ * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
  */
 
@@ -81,7 +81,7 @@ class Draft7Test extends TestCase
     public function testAbstractMapGetFactory(): void
     {
         $subject = new Draft7();
-        
+
         $this->assertInstanceOf(
             ChainValidatorFactory::class,
             $subject->getFactory(
