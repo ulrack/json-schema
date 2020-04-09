@@ -5,7 +5,7 @@
  */
 namespace Ulrack\JsonSchema\Common;
 
-use Ulrack\Enum\Enum;
+use GrizzIt\Enum\Enum;
 use Ulrack\JsonSchema\Component\Map\Draft7;
 
 /**

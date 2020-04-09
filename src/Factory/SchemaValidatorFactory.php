@@ -7,7 +7,7 @@
 namespace Ulrack\JsonSchema\Factory;
 
 use InvalidArgumentException;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Common\SupportedDraftsEnum;
 use Ulrack\JsonSchema\Common\StorageManagerInterface;

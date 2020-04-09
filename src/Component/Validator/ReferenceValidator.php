@@ -6,7 +6,7 @@
 
 namespace Ulrack\JsonSchema\Component\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 
 class ReferenceValidator implements ValidatorInterface
 {

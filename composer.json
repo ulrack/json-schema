@@ -8,9 +8,9 @@
   "minimum-stability": "stable",
   "require": {
     "php": "^7.2",
-    "ulrack/enum": "^1.0",
-    "ulrack/storage": "^1.0",
-    "ulrack/validator": "^1.0"
+    "grizz-it/enum": "^1.0",
+    "grizz-it/storage": "^1.0",
+    "grizz-it/validator": "^1.0"
   },
   "authors": [
     {

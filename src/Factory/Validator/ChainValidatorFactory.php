@@ -6,10 +6,10 @@
 
 namespace Ulrack\JsonSchema\Factory\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\OrValidator;
-use Ulrack\Validator\Component\Chain\AndValidator;
-use Ulrack\Validator\Component\Chain\OneOfValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\OrValidator;
+use GrizzIt\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Component\Chain\OneOfValidator;
 use Ulrack\JsonSchema\Common\AbstractValidatorFactory;
 
 class ChainValidatorFactory extends AbstractValidatorFactory

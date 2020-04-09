@@ -6,8 +6,8 @@
 
 namespace Ulrack\JsonSchema\Component\Storage;
 
-use Ulrack\Storage\Common\StorageInterface;
-use Ulrack\Storage\Component\ObjectStorage;
+use GrizzIt\Storage\Common\StorageInterface;
+use GrizzIt\Storage\Component\ObjectStorage;
 use Ulrack\JsonSchema\Common\StorageManagerInterface;
 
 class StorageManager implements StorageManagerInterface

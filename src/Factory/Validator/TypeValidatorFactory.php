@@ -7,15 +7,15 @@
 namespace Ulrack\JsonSchema\Factory\Validator;
 
 use InvalidArgumentException;
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\OrValidator;
-use Ulrack\Validator\Component\Type\ArrayValidator;
-use Ulrack\Validator\Component\Type\BooleanValidator;
-use Ulrack\Validator\Component\Type\IntegerValidator;
-use Ulrack\Validator\Component\Type\NullValidator;
-use Ulrack\Validator\Component\Type\NumberValidator;
-use Ulrack\Validator\Component\Type\ObjectValidator;
-use Ulrack\Validator\Component\Type\StringValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\OrValidator;
+use GrizzIt\Validator\Component\Type\ArrayValidator;
+use GrizzIt\Validator\Component\Type\BooleanValidator;
+use GrizzIt\Validator\Component\Type\IntegerValidator;
+use GrizzIt\Validator\Component\Type\NullValidator;
+use GrizzIt\Validator\Component\Type\NumberValidator;
+use GrizzIt\Validator\Component\Type\ObjectValidator;
+use GrizzIt\Validator\Component\Type\StringValidator;
 
 class TypeValidatorFactory
 {

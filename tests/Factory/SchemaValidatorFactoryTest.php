@@ -9,7 +9,7 @@ namespace Ulrack\JsonSchema\Tests\Factory;
 use stdClass;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Factory\SchemaValidatorFactory;
 use Ulrack\JsonSchema\Component\Storage\StorageManager;

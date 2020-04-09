@@ -7,7 +7,7 @@
 namespace Ulrack\JsonSchema\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Factory\Validator\TextualValidatorFactory;
 
 /**

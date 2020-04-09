@@ -6,11 +6,11 @@
 
 namespace Ulrack\JsonSchema\Factory\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\AndValidator;
-use Ulrack\Validator\Component\Textual\MaxLengthValidator;
-use Ulrack\Validator\Component\Textual\MinLengthValidator;
-use Ulrack\Validator\Component\Textual\PatternValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Component\Textual\MaxLengthValidator;
+use GrizzIt\Validator\Component\Textual\MinLengthValidator;
+use GrizzIt\Validator\Component\Textual\PatternValidator;
 
 class TextualValidatorFactory
 {

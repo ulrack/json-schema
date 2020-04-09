@@ -6,15 +6,15 @@
 
 namespace Ulrack\JsonSchema\Factory\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\AndValidator;
 use Ulrack\JsonSchema\Common\AbstractValidatorFactory;
-use Ulrack\Validator\Component\Iterable\ItemsValidator;
-use Ulrack\Validator\Component\Logical\AlwaysValidator;
-use Ulrack\Validator\Component\Iterable\ContainsValidator;
-use Ulrack\Validator\Component\Iterable\MaxItemsValidator;
-use Ulrack\Validator\Component\Iterable\MinItemsValidator;
-use Ulrack\Validator\Component\Iterable\UniqueItemsValidator;
+use GrizzIt\Validator\Component\Iterable\ItemsValidator;
+use GrizzIt\Validator\Component\Logical\AlwaysValidator;
+use GrizzIt\Validator\Component\Iterable\ContainsValidator;
+use GrizzIt\Validator\Component\Iterable\MaxItemsValidator;
+use GrizzIt\Validator\Component\Iterable\MinItemsValidator;
+use GrizzIt\Validator\Component\Iterable\UniqueItemsValidator;
 
 class IterableValidatorFactory extends AbstractValidatorFactory
 {

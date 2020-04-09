@@ -5,7 +5,7 @@
  */
 namespace Ulrack\JsonSchema\Common;
 
-use Ulrack\Storage\Common\StorageInterface;
+use GrizzIt\Storage\Common\StorageInterface;
 
 interface StorageManagerInterface
 {

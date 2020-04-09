@@ -7,7 +7,7 @@ namespace Ulrack\JsonSchema\Common;
 
 use LogicException;
 use Ulrack\JsonSchema\Common\MapInterface;
-use Ulrack\Storage\Component\ObjectStorage;
+use GrizzIt\Storage\Component\ObjectStorage;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Common\AbstractValidatorFactory;
 

@@ -6,12 +6,12 @@
 
 namespace Ulrack\JsonSchema\Factory\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\AndValidator;
-use Ulrack\Validator\Component\Logical\NotValidator;
-use Ulrack\Validator\Component\Logical\EnumValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Component\Logical\NotValidator;
+use GrizzIt\Validator\Component\Logical\EnumValidator;
 use Ulrack\JsonSchema\Common\AbstractValidatorFactory;
-use Ulrack\Validator\Component\Logical\IfThenElseValidator;
+use GrizzIt\Validator\Component\Logical\IfThenElseValidator;
 
 class LogicalValidatorFactory extends AbstractValidatorFactory
 {

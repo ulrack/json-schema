@@ -8,7 +8,7 @@ namespace Ulrack\JsonSchema\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use Ulrack\JsonSchema\Common\MapInterface;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Common\SupportedDraftsEnum;
 use Ulrack\JsonSchema\Component\Storage\StorageManager;

@@ -32,13 +32,13 @@ $factory = new SchemaValidatorFactory();
 ```
 
 All of the below described method of generating a validation object will result
-in a [ValidatorInterface](https://github.com/ulrack/validator/blob/master/src/Common/ValidatorInterface.php).
+in a [ValidatorInterface](https://github.com/grizz-it/validator/blob/master/src/Common/ValidatorInterface.php).
 To verify data against this object, simply pass the data to the `__invoke`
 method, like so:
 ```php
 <?php
 
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 
 /** @var ValidatorInterface $validator */
 $validator($myData); // returns true or false.
@@ -134,7 +134,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 ## MIT License
 
-Copyright (c) 2019 GrizzIT
+Copyright (c) GrizzIT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

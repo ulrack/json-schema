@@ -6,14 +6,14 @@
 
 namespace Ulrack\JsonSchema\Factory\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\AndValidator;
 use Ulrack\JsonSchema\Common\AbstractValidatorFactory;
-use Ulrack\Validator\Component\Object\RequiredValidator;
-use Ulrack\Validator\Component\Object\DependencyValidator;
-use Ulrack\Validator\Component\Object\PropertiesValidator;
-use Ulrack\Validator\Component\Object\MaxPropertiesValidator;
-use Ulrack\Validator\Component\Object\MinPropertiesValidator;
+use GrizzIt\Validator\Component\Object\RequiredValidator;
+use GrizzIt\Validator\Component\Object\DependencyValidator;
+use GrizzIt\Validator\Component\Object\PropertiesValidator;
+use GrizzIt\Validator\Component\Object\MaxPropertiesValidator;
+use GrizzIt\Validator\Component\Object\MinPropertiesValidator;
 
 class ObjectValidatorFactory extends AbstractValidatorFactory
 {

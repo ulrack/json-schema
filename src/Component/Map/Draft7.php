@@ -7,8 +7,8 @@
 namespace Ulrack\JsonSchema\Component\Map;
 
 use Ulrack\JsonSchema\Common\AbstractMap;
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Logical\ConstValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Logical\ConstValidator;
 use Ulrack\JsonSchema\Factory\Validator\TypeValidatorFactory;
 use Ulrack\JsonSchema\Factory\Validator\ChainValidatorFactory;
 use Ulrack\JsonSchema\Factory\Validator\ObjectValidatorFactory;

@@ -7,12 +7,12 @@
 namespace Ulrack\JsonSchema\Factory\Validator;
 
 use Ulrack\JsonSchema\Common\MapInterface;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
-use Ulrack\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Component\Chain\AndValidator;
 use Ulrack\JsonSchema\Common\StorageManagerInterface;
 use Ulrack\JsonSchema\Common\ValidatorFactoryInterface;
-use Ulrack\Validator\Component\Logical\AlwaysValidator;
+use GrizzIt\Validator\Component\Logical\AlwaysValidator;
 use Ulrack\JsonSchema\Common\ReferenceResolverInterface;
 use Ulrack\JsonSchema\Common\ReferenceTranslatorInterface;
 use Ulrack\JsonSchema\Component\Resolver\ReferenceResolver;

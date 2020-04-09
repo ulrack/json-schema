@@ -5,8 +5,8 @@
  */
 namespace Ulrack\JsonSchema\Common;
 
-use Ulrack\Storage\Common\StorageInterface;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Storage\Common\StorageInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 
 interface MapInterface extends StorageInterface
 {

@@ -5,7 +5,7 @@
  */
 namespace Ulrack\JsonSchema\Common;
 
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 
 interface SchemaValidatorFactoryInterface
 {

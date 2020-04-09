@@ -6,13 +6,13 @@
 
 namespace Ulrack\JsonSchema\Factory\Validator;
 
-use Ulrack\Validator\Common\ValidatorInterface;
-use Ulrack\Validator\Component\Chain\AndValidator;
-use Ulrack\Validator\Component\Numeric\ExclusiveMaximumValidator;
-use Ulrack\Validator\Component\Numeric\ExclusiveMinimumValidator;
-use Ulrack\Validator\Component\Numeric\MaximumValidator;
-use Ulrack\Validator\Component\Numeric\MinimumValidator;
-use Ulrack\Validator\Component\Numeric\MultipleOfValidator;
+use GrizzIt\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Component\Chain\AndValidator;
+use GrizzIt\Validator\Component\Numeric\ExclusiveMaximumValidator;
+use GrizzIt\Validator\Component\Numeric\ExclusiveMinimumValidator;
+use GrizzIt\Validator\Component\Numeric\MaximumValidator;
+use GrizzIt\Validator\Component\Numeric\MinimumValidator;
+use GrizzIt\Validator\Component\Numeric\MultipleOfValidator;
 
 class NumericValidatorFactory
 {

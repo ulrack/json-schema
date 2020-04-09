@@ -9,7 +9,7 @@ namespace Ulrack\JsonSchema\Tests\Component\Map;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Ulrack\JsonSchema\Component\Map\Draft7;
-use Ulrack\Validator\Common\ValidatorInterface;
+use GrizzIt\Validator\Common\ValidatorInterface;
 use Ulrack\JsonSchema\Exception\SchemaException;
 use Ulrack\JsonSchema\Common\ValidatorFactoryInterface;
 use Ulrack\JsonSchema\Factory\Validator\TypeValidatorFactory;
