@@ -1,3 +1,5 @@
+# DEPRECATION NOTICE: this package has been moved and improved at [grizz-it/json-schema](https://github.com/grizz-it/json-schema)
+
 [![Build Status](https://travis-ci.com/ulrack/json-schema.svg?branch=master)](https://travis-ci.com/ulrack/json-schema)
 
 # Ulrack JSON Schema
